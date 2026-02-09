@@ -154,9 +154,9 @@ namespace FishAndChips
 			_activeRequests.Insert(0, request);
 		}
 
-		public void ShowGameplayView()
+		public virtual void ShowGameplayView()
 		{
-			_uiService.ActivateView(UIEnumTypes.eViewType.GameplaySceneView.ToString());
+			_uiService.ActivateView(UIEnumTypesBase.eViewTypeBase.GameplaySceneView.ToString());
 		}
 
 		public void OnBackPressed()
