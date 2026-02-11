@@ -21,14 +21,6 @@ namespace FishAndChips
 
 		protected Dictionary<string, List<Action<SpriteAtlas>>> _requestAtlasCallbackDict = new();
 
-#if FISH_ADDRESSABLE
-		protected List<object> _levelAddressables = new();
-		protected Dictionary<object, List<string>> _spriteAtlasAddressableDictByKey = new();
-
-		// Services.
-		protected AddressableService _addressableService;
-#endif
-
 		#endregion
 
 		#region -- Private Methods --
