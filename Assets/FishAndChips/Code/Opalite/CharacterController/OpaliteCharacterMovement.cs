@@ -7,10 +7,16 @@ namespace FishAndChips
 	public class OpaliteCharacterMovement : MonoBehaviour
 	{
 		#region -- Inspector --
+		public int PlayerId = 0;
+
 		[Header("Movement")]
 		public float MoveSpeed;
 		public Transform Orientation;
-		public int PlayerId = 0;
+		public float GroundDrag;
+
+		[Header("Grounded")]
+		public float PlayerHeight;
+		public LayerMask GroundLayer;
 		#endregion
 
 		#region -- Private Member Vars --
@@ -22,6 +28,8 @@ namespace FishAndChips
 
 		private Player _rewiredPlayer;
 		private Vector2 _movementInputs = Vector2.zero;
+
+		private bool _isGrounded;
 		#endregion
 
 		#region -- Private Methods --
@@ -73,6 +81,27 @@ namespace FishAndChips
 				return;
 			}
 			GetInput();
+
+			PerformGroundCheck();
+			PerformGroundDrag();
+		}
+
+		private void PerformGroundDrag()
+		{
+			if (_isGrounded == true)
+			{
+				_rigidBody.linearDamping = GroundDrag;
+			}
+			else
+			{
+				_rigidBody.linearDamping = 0f;
+			}
+		}
+
+		private void PerformGroundCheck()
+		{
+			float raycastDepth = (PlayerHeight * 0.5f) + 0.2f;
+			_isGrounded = Physics.Raycast(transform.position, Vector3.down, raycastDepth, GroundLayer);
 		}
 
 		private void FixedUpdate()

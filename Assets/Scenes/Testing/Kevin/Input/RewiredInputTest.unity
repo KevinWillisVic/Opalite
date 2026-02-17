@@ -459,7 +459,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 908877963}
@@ -540,9 +540,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d70a368bd61c2468b7df4d6cac4785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishAndChips.OpaliteCharacterMovement
+  PlayerId: 0
   MoveSpeed: 10
   Orientation: {fileID: 572991991}
-  PlayerId: 0
+  GroundDrag: 0
+  PlayerHeight: 1
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +754,7 @@ GameObject:
   - component: {fileID: 908877966}
   - component: {fileID: 908877965}
   - component: {fileID: 908877964}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
