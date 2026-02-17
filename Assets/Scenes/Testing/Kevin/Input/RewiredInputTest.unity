@@ -543,7 +543,7 @@ MonoBehaviour:
   PlayerId: 0
   MoveSpeed: 10
   Orientation: {fileID: 572991991}
-  GroundDrag: 0
+  GroundDrag: 5
   PlayerHeight: 1
   GroundLayer:
     serializedVersion: 2

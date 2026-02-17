@@ -82,6 +82,7 @@ namespace FishAndChips
 			}
 			GetInput();
 
+			ControlSpeed();
 			PerformGroundCheck();
 			PerformGroundDrag();
 		}
@@ -113,6 +114,16 @@ namespace FishAndChips
 		{
 			_moveDirection = (Orientation.forward * _verticalInput) + (Orientation.right * _horizontalInput);
 			_rigidBody.AddForce(_moveDirection * MoveSpeed, ForceMode.Force);
+		}
+
+		private void ControlSpeed()
+		{
+			Vector3 flatVelocity = new Vector3(_rigidBody.linearVelocity.x, 0f, _rigidBody.linearVelocity.z);
+			if (flatVelocity.magnitude > MoveSpeed)
+			{
+				Vector3 limitedVelocity = flatVelocity.normalized * MoveSpeed;
+				_rigidBody.linearVelocity = new Vector3(limitedVelocity.x, _rigidBody.linearVelocity.y, limitedVelocity.z);
+			}
 		}
 		#endregion
 	}
