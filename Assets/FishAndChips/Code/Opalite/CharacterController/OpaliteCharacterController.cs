@@ -22,7 +22,7 @@ namespace FishAndChips
 		private CharacterController _characterController;
 
 		private bool _interactionTriggered;
-		private Vector2 _mouseInputs = Vector2.zero;
+		private Vector2 _viewInputs = Vector2.zero;
 		#endregion
 
 		#region -- Private Methods --
@@ -67,8 +67,8 @@ namespace FishAndChips
 		private void GetInput()
 		{
 			_interactionTriggered = _rewiredPlayer.GetButtonDown("Interact");
-			_mouseInputs.x = _rewiredPlayer.GetAxis("HorizontalView");
-			_mouseInputs.y = _rewiredPlayer.GetAxis("VerticalView");
+			_viewInputs.x = _rewiredPlayer.GetAxis("HorizontalView");
+			_viewInputs.y = _rewiredPlayer.GetAxis("VerticalView");
 		}
 
 		private void ProcessInput()
@@ -78,8 +78,8 @@ namespace FishAndChips
 				Debug.Log("Interaction Triggered");
 			}
 
-			CameraXRotation -= _mouseInputs.y * Time.deltaTime * XSensitivity;
-			CameraYRotation += _mouseInputs.x * Time.deltaTime * YSensitivity;
+			CameraXRotation -= _viewInputs.y * Time.deltaTime * XSensitivity;
+			CameraYRotation += _viewInputs.x * Time.deltaTime * YSensitivity;
 
 			CameraXRotation = Mathf.Clamp(CameraXRotation, -90f, 90f);
 
