@@ -5196,7 +5196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishAndChips.OpaliteCharacterMovement
   PlayerId: 0
-  MoveSpeed: 9
+  MoveSpeed: 20
   Orientation: {fileID: 572991991}
   GroundDrag: 5
   PlayerHeight: 2
