@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Testing/Kevin/PostProcessing/PostProcessTest/PostProcessTest.unity
+    path: Assets/Scenes/Testing/Kevin/PostProcessing/PostProcessTest.unity
     guid: 9bb2516a356d90d4eac9268d5125d25e
   - enabled: 1
     path: Assets/Scenes/Testing/Kevin/Input/RewiredInputTest.unity
