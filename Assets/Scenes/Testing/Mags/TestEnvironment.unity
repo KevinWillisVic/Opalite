@@ -5199,7 +5199,7 @@ MonoBehaviour:
   MoveSpeed: 9
   Orientation: {fileID: 572991991}
   GroundDrag: 5
-  PlayerHeight: 1
+  PlayerHeight: 2
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
