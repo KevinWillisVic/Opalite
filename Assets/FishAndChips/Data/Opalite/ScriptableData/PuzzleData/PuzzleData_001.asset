@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b374248561ec4ca4c975582a2284f525, type: 3}
+  m_Name: PuzzleData_001
+  m_EditorClassIdentifier: Assembly-CSharp::FishAndChips.OpalitePuzzleData
+  GUID: 017f8b42-6c4b-4b1f-b0f1-8a1e4344c934
