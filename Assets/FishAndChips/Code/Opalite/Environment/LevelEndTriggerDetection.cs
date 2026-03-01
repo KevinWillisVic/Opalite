@@ -10,7 +10,9 @@ namespace FishAndChips
 			if (other.gameObject.tag == "Player")
 			{
 				Debug.Log("OnTriggerEnter");
-				EventManager.TriggerEvent<OpaliteResetLevelEvent>(new OpaliteResetLevelEvent());
+				// TODO : Verify flag of passed level.
+				bool passedLevel = true;
+				EventManager.TriggerEvent<OpaliteResetLevelEvent>(new OpaliteResetLevelEvent(passedLevel));
 			}
 		}
 

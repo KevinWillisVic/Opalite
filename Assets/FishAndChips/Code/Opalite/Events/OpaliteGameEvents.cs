@@ -1,14 +1,11 @@
-using System;
-using UnityEngine;
-
 namespace FishAndChips
 {
-	public class OpaliteResetLevelEvent : IEvent
+	public class OpaliteResetLevelEvent : GameEvent
 	{
-		public Type[] DispatchAs { get; internal set; }
-
-		public OpaliteResetLevelEvent()
+		public bool Passed;
+		public OpaliteResetLevelEvent(bool passed)
 		{
+			Passed = passed;
 			DispatchAs = new[] { typeof(OpaliteResetLevelEvent), typeof(GameEvent) };
 		}
 	}
