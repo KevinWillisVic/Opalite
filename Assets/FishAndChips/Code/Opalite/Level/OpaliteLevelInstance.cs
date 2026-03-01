@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 namespace FishAndChips
 {
@@ -9,9 +11,21 @@ namespace FishAndChips
 		public Transform PlayerTransform;
 		public Transform StartingTransform;
 		public BoxCollider LevelEndTrigger;
+
+		[Header("Puzzle Collection")]
+		public List<OpalitePuzzleData> PuzzleList = new();
+		#endregion
+
+		#region -- Private Member Vars --
+		private int _currentPuzzleIndex;
 		#endregion
 
 		#region -- Private Methods --
+		private void Awake()
+		{
+			Initialize();
+		}
+
 		private void OnResetLevel(OpaliteResetLevelEvent resetEvent)
 		{
 			ResetScene(resetEvent.Passed);
@@ -38,6 +52,38 @@ namespace FishAndChips
 			currentPosition = currentPosition.WithX(adjustedXPosition).WithZ(adjustedZPosition);
 			PlayerTransform.position = currentPosition;
 		}
+
+		private void ResetLevelVisuals()
+		{
+		}
+
+
+		private void Initialize()
+		{
+			_currentPuzzleIndex = 0;
+			ResetPuzzleData();
+			ResetLevelVisuals();
+		}
+
+		private void ResetPuzzleData()
+		{
+			foreach (var puzzle in PuzzleList)
+			{
+				if (puzzle == null)
+				{
+					continue;
+				}
+				puzzle.IsPuzzleSolved = false;
+				puzzle.IsActivePuzzle = false;
+			}
+		}
+
+		private void OnFailLevel()
+		{
+			_currentPuzzleIndex = 0;
+			ResetPuzzleData();
+			ResetLevelVisuals();
+		}
 		#endregion
 
 		#region -- Protected Methods --
@@ -52,12 +98,34 @@ namespace FishAndChips
 			base.UnsubscribeEventListeners();
 			EventManager.UnsubscribeEventListener<OpaliteResetLevelEvent>(OnResetLevel);
 		}
+
+		protected virtual void AdvancePuzzle()
+		{
+			if (_currentPuzzleIndex == PuzzleList.Count - 1)
+			{
+				Debug.Log("Should be finishing the game.");
+			}
+			else
+			{
+				_currentPuzzleIndex++;
+				_currentPuzzleIndex = Math.Clamp(_currentPuzzleIndex, 0, PuzzleList.Count - 1);
+			}
+		}
 		#endregion
 
 		#region -- Public Methods --
 		public void ResetScene(bool passed)
 		{
 			ResetPlayerPosition();
+
+			if (passed == true)
+			{
+				AdvancePuzzle();
+			}
+			else
+			{
+				OnFailLevel();
+			}
 		}
 		#endregion
 	}

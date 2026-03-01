@@ -7,6 +7,9 @@ namespace FishAndChips
 {
     public class OpalitePuzzleData : ScriptableObjectData
     {
+		public bool IsPuzzleSolved { get; set; } = false;
+		public bool IsActivePuzzle { get; set; } = false;
+
 #if UNITY_EDITOR
 		[MenuItem("Assets/Create/FishAndChips/GameData/PuzzleData")]
 		public static void CreateAsset()

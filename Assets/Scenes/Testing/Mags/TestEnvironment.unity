@@ -8293,6 +8293,8 @@ MonoBehaviour:
   PlayerTransform: {fileID: 814958578}
   StartingTransform: {fileID: 47832627}
   LevelEndTrigger: {fileID: 669630827}
+  PuzzleList:
+  - {fileID: 11400000, guid: f0c040d1a74b53b42b8a37b3d6d2f2d3, type: 2}
 --- !u!4 &1090209738
 Transform:
   m_ObjectHideFlags: 0
