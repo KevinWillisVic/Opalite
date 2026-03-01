@@ -5,6 +5,7 @@ namespace FishAndChips
     public class OpaliteLevelInstance : FishScript
     {
 		#region -- Inspector --
+		[Header("Position Helpers")]
 		public Transform PlayerTransform;
 		public Transform StartingTransform;
 		public BoxCollider LevelEndTrigger;
@@ -14,6 +15,28 @@ namespace FishAndChips
 		private void OnResetLevel(OpaliteResetLevelEvent resetEvent)
 		{
 			ResetScene(resetEvent.Passed);
+		}
+
+		private void ResetPlayerPosition()
+		{
+			var currentPosition = PlayerTransform.position;
+
+			// New z position.
+			float adjustedZPosition = StartingTransform.position.z;
+
+			// New y position.
+			// Remap
+			float levelEndTriggerXPosition = LevelEndTrigger.transform.position.x;
+			float levelEndTriggerXScale = LevelEndTrigger.size.x;
+
+			float min = levelEndTriggerXPosition - (levelEndTriggerXScale / 2.0f);
+			float max = levelEndTriggerXPosition + (levelEndTriggerXScale / 2.0f);
+
+			// TODO : This only works on the -1 to 1 mapping, if its a different value it must be updated.
+			float adjustedXPosition = currentPosition.x.Remap(min, max, -1f, 1f);
+
+			currentPosition = currentPosition.WithX(adjustedXPosition).WithZ(adjustedZPosition);
+			PlayerTransform.position = currentPosition;
 		}
 		#endregion
 
@@ -34,26 +57,7 @@ namespace FishAndChips
 		#region -- Public Methods --
 		public void ResetScene(bool passed)
 		{
-			var currentPosition = PlayerTransform.position;
-			currentPosition = currentPosition.WithZ(StartingTransform.position.z);
-			//float horizontalPosition = currentPosition.x - StartingTransform.position.x;
-			//currentPosition = currentPosition.WithX(horizontalPosition);
-
-			if (LevelEndTrigger != null)
-			{
-				float levelEndTriggerXPosition = LevelEndTrigger.transform.position.x;
-				float levelEndTriggerXScale = LevelEndTrigger.size.x;
-
-				float min = levelEndTriggerXPosition - (levelEndTriggerXScale / 2.0f);
-				float max = levelEndTriggerXPosition + (levelEndTriggerXScale / 2.0f);
-
-				float currentX = currentPosition.x;
-				currentX = currentX.Remap(min, max, -1f, 1f);
-
-				Debug.Log($"Min = {min.ToString()} : Max = {max.ToString()} : CurrentPosition = {currentPosition.x.ToString()}");
-				currentPosition = currentPosition.WithX(currentX);
-			}
-			PlayerTransform.position = currentPosition;
+			ResetPlayerPosition();
 		}
 		#endregion
 	}

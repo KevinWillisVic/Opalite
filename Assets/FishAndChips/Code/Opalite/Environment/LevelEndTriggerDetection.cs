@@ -9,19 +9,14 @@ namespace FishAndChips
 		{
 			if (other.gameObject.tag == "Player")
 			{
-				Debug.Log("OnTriggerEnter");
-				// TODO : Verify flag of passed level.
-				bool passedLevel = true;
+				bool passedLevel = CheckIfPassedLevel();
 				EventManager.TriggerEvent<OpaliteResetLevelEvent>(new OpaliteResetLevelEvent(passedLevel));
 			}
 		}
 
-		private void OnTriggerExit(Collider other)
+		private bool CheckIfPassedLevel()
 		{
-			if (other.gameObject.tag == "Player")
-			{
-				Debug.Log("OnTriggerExit");
-			}
+			return true;
 		}
 		#endregion
 	}
