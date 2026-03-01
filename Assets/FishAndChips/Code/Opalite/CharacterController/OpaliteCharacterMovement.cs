@@ -91,7 +91,6 @@ namespace FishAndChips
 		{
 			if (_isGrounded == true)
 			{
-				Debug.Log("Is grounded");
 				_rigidBody.linearDamping = GroundDrag;
 			}
 			else
